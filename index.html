@@ -6,34 +6,37 @@
   <title>Hola Mundo — Surge CI/CD</title>
   <style>
     :root {
-      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --bg: #f2f2f7;
+      --card: rgba(255, 255, 255, 0.72);
+      --text: #1c1c1e;
+      --secondary: #6e6e73;
+      --blue: #007aff;
+      --green: #34c759;
+      --separator: rgba(60, 60, 67, 0.12);
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: var(--font);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
-      color: #ffffff;
+      background: var(--bg);
+      color: var(--text);
       padding: 20px;
       -webkit-font-smoothing: antialiased;
     }
     .card {
-      background: rgba(255, 255, 255, 0.12);
+      background: var(--card);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 24px;
       padding: 36px 32px;
       max-width: 440px;
       width: 100%;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       text-align: center;
     }
     .badge {
@@ -42,34 +45,32 @@
       gap: 8px;
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #93c5fd;
+      background: rgba(52, 199, 89, 0.12);
+      border: 1px solid rgba(52, 199, 89, 0.25);
+      color: #248a3d;
       font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
     }
     .dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: #30d158;
-      box-shadow: 0 0 10px #30d158;
+      background-color: var(--green);
     }
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
     p {
-      color: rgba(255, 255, 255, 0.75);
+      color: var(--secondary);
       font-size: 0.98rem;
       line-height: 1.5;
       margin-bottom: 24px;
     }
+    p strong { color: var(--text); }
     .btn {
       width: 100%;
       font-family: var(--font);
@@ -79,31 +80,30 @@
       border-radius: 16px;
       padding: 14px;
       color: #ffffff;
-      background: linear-gradient(180deg, #0a84ff 0%, #0066d6 100%);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 20px rgba(10, 132, 255, 0.35);
+      background: var(--blue);
       cursor: pointer;
       transition: transform 0.1s ease, filter 0.2s ease;
     }
-    .btn:active {
-      transform: scale(0.97);
-    }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:active { transform: scale(0.98); }
     .status-msg {
       margin-top: 16px;
       font-size: 0.9rem;
-      color: #30d158;
+      color: var(--text);
       font-weight: 600;
       min-height: 22px;
+      border-top: 1px solid var(--separator);
+      padding-top: 16px;
     }
   </style>
 </head>
 <body>
   <main class="card">
     <div class="badge">
-      <span class="dot"></span> Surge.sh • LIVE
+      <span class="dot"></span> Desplegado en Surge.sh
     </div>
-    <h1>¡Hola Mundo! 🚀</h1>
-    <p>Desplegado automáticamente mediante <strong>GitHub Actions</strong> con estilo iOS Glassmorphism.</p>
+    <h1>Hola Mundo - CI/CD</h1>
+    <p>Desplegado automáticamente mediante <strong>GitHub Actions</strong>.</p>
     <button class="btn" id="btnSaludo">Saludar 👋</button>
     <div class="status-msg" id="mensaje"></div>
   </main>
@@ -115,8 +115,8 @@
 
     btn.addEventListener('click', () => {
       clicks++;
-      msg.textContent = clicks === 1 
-        ? '👋 ¡Hola! Cambios sincronizados con CI/CD.' 
+      msg.textContent = clicks === 1
+        ? '👋 ¡Hola! Cambios sincronizados con CI/CD.'
         : `👋 ¡Hola de nuevo! (${clicks} clics)`;
     });
   </script>
